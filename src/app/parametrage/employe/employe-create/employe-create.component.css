@@ -1,0 +1,24 @@
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.box1{
+  display: flex;
+  justify-content: space-between;
+}
+form{
+  margin: 5px;
+  margin-bottom: 20px;
+  padding: 5px;
+
+}
+/*.button{*/
+/*  margin-bottom: 20px;*/
+/*}*/
+.button-row{
+  display: flex;
+  justify-content: flex-end;
+}
+.from-row{
+  width: 300px;
+}

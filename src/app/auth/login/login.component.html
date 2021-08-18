@@ -1,0 +1,51 @@
+<!--begin::Main-->
+<div class="d-flex flex-column flex-root displayfull">
+  <!--begin::Login-->
+  <div class="login login-4 login-signin-on d-flex flex-row-fluid" id="kt_login">
+    <div class="d-flex flex-center flex-row-fluid bgi-size-cover bgi-position-top bgi-no-repeat" style="background-image: url('assets/media/bg/bg-3.jpg');">
+      <div class="login-form text-center p-7 position-relative overflow-hidden">
+        <!--begin::Login Header-->
+        <!--end::Login Header-->
+        <!--begin::Login Sign in form-->
+        <div class="login-signin">
+          <div class="mb-20">
+            <h3>Connectez-vous à L'administrateur</h3>
+            <div class="text-muted font-weight-bold">Entrez vos coordonnées pour vous connecter à votre compte :</div>
+          </div>
+          <form class="form" id="kt_login_signin_form"
+                *ngIf="!isLoggedIn"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+            <div class="form-group mb-5">
+              <input class="form-control h-auto form-control-solid py-4 px-8" type="text" placeholder="Email" name="username" autocomplete="off"
+                     type="text"
+                     class="form-control"
+                     name="username"
+                     [(ngModel)]="form.username"
+                     required
+                     #username="ngModel"/>
+            </div>
+            <div class="form-group mb-5">
+              <input class="form-control h-auto form-control-solid py-4 px-8" type="password" placeholder="Password" name="password"
+                     [(ngModel)]="form.password"
+                     required
+                     minlength="6"
+                     #password="ngModel"
+              />
+            </div>
+            <button id="kt_login_signin_submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3 mx-4">S'identifier</button>
+          </form>
+        </div>
+        <!--end::Login Sign in form-->
+        <!--begin::Login Sign up form-->
+        <!--end::Login Sign up form-->
+        <!--begin::Login forgot password form-->
+        <!--end::Login forgot password form-->
+      </div>
+    </div>
+  </div>
+  <!--end::Login-->
+</div>
+<!--end::Main-->

@@ -1,0 +1,45 @@
+<!--<mat-toolbar class="box1">-->
+<!--  <span>-->
+<!--    {{test()}}-->
+<!--  </span>-->
+<!--  <button mat-icon-button (click)="onClose()">-->
+<!--    <mat-icon>close</mat-icon>-->
+<!--  </button>-->
+<!--</mat-toolbar>-->
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{test()}}</h5>
+  <button type="button" class="close" (click)="onClose()">
+    <i aria-hidden="true" class="ki ki-close"></i>
+  </button>
+</div>
+<form [formGroup]="shiftService.shiftCreateForm">
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input matInput formControlName="nom" placeholder="Nom de Shift">
+          <mat-error *ngIf="shiftService.shiftCreateForm.controls['nom'].invalid">Nom
+            invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="entree" placeholder="Entree" [ngxTimepicker]="peckerentree">
+          <ngx-material-timepicker #peckerentree></ngx-material-timepicker>
+          <mat-error *ngIf="shiftService.shiftCreateForm.controls['entree'].invalid">Nom invalid</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="sortie" placeholder="sortie" [ngxTimepicker]="peckersortie">
+          <ngx-material-timepicker #peckersortie></ngx-material-timepicker>
+          <mat-error *ngIf="shiftService.shiftCreateForm.controls['sortie'].invalid">Nom invalid</mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button color="primary" class="button" type="submit" (click)="oneSubmit()">
+            {{test2()}}
+          </button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+

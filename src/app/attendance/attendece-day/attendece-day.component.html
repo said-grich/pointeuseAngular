@@ -1,0 +1,22 @@
+<table class="table table-separate table-head-custom table-foot-custom table-checkable" id="kt_datatable">
+  <thead>
+  <tr>
+    <th>Attendance ID</th>
+    <th>Employe Nom </th>
+    <th>Date de Présence</th>
+    <th>heure d'entrée</th>
+    <th>heure de sortie</th>
+    <th>total d'heures</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let attendence of attendenceList">
+    <td>{{attendence.employeDto.employe_Id}}</td>
+    <td>{{attendence.employeDto.nom}}</td>
+    <td>{{attendence.dateOflog}}</td>
+    <td>{{attendence.timeIn}}</td>
+    <td><span [ngClass]="{'btn-light-primary btn font-weight-bold mr-2':attendence.employeDto.statu==1}">{{attendence.employeDto.statu==1?'Present':attendence.timeOut}}</span></td>
+    <td><span [ngClass]="{'btn btn-info':attendence.employeDto.statu==1}">{{attendence.employeDto.statu==1?'...':attendence.totalheure}}</span></td>
+  </tr>
+  </tbody>
+</table>

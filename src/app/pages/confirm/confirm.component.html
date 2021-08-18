@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h5 class="modal-title light" id="exampleModalLabel">{{data.message}}</h5>
+  <button type="button"  class="close"  (click)="onCloseConfirm()">
+    <i aria-hidden="true" class="ki ki-close"></i>
+  </button>
+</div>
+<div class="box-yes-no">
+  <button mat-flat-button id="yes-button" class="btn1"[mat-dialog-close]="true">Yes</button>
+  <button mat-flat-button id="no-button" class="btn1" [mat-dialog-close]="false">NO</button>
+</div>

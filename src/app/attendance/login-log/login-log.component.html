@@ -1,0 +1,62 @@
+
+<div class="card">
+  <div class="card-header">
+    <h1 class="h1">Activities Actuelles</h1>
+  </div>
+  <div class="card-body">
+    <form>
+      <div class="form-group mb-2">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." (keyup)="filtring($event)"/>
+          <div class="input-group-prepend">
+            <button class="btn btn-primary" type="button" disabled><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <mat-table [dataSource]="listLoginlog" matSort (matSortChange)="sortData($event)">
+      <ng-container matColumnDef="employe_Id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
+        <mat-cell *matCellDef="let log">{{log.user_id}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="fullName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>nom</mat-header-cell>
+        <mat-cell *matCellDef="let log">{{log.employeDto !=null ? log.employeDto.nom:'no emp'}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="groupe">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Groupe</mat-header-cell>
+        <mat-cell *matCellDef="let log">{{log.employeDto != null ? log.employeDto.groupe!=null? log.employeDto.groupe.nom : 'No Group':'null Emp'}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="shift">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Groupe</mat-header-cell>
+        <mat-cell
+          *matCellDef="let log">{{log.employeDto != null ? log.employeDto.shiftDto!=null? log.employeDto.shiftDto.nom : 'No Shift':'null Emp'}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="statut">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Statut</mat-header-cell>
+        <mat-cell *matCellDef="let log">
+          <span class="btn font-weight-bold mr-2">{{log.employeDto!=null? log.employeDto.statu>0?'Present':'Absent':'Indifined'}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef>
+          loading data ...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef>
+          table is empty
+        </mat-footer-cell>
+      </ng-container>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listLoginlog!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']"
+                      [ngClass]="{'hide':listLoginlog !=null && listLoginlog.data.length != 0 }"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
+                   [ngClass]="{'hide' :listLoginlog==null}"></mat-paginator>
+
+  </div>
+</div>

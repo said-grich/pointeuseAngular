@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.style-success {
+  color:#FFFFFF;
+  background-color:#4dd599;
+}
+.style-success .mat-simple-snackbar-action {
+}
+.style-error {
+  color:#FFFFFF;
+  background-color:#f55c47;
+}
+.confirm-dialog-container .mat-dialog-container{
+  color: #8f9cb5;
+  display: flex;
+  padding: 0;
+}
+.confirm-dialog-container{
+  padding:5px 5px 15px 5px;
+}
+.confirm-dialog-container #close-icon{
+  margin-left: auto;
+  order: 2;
+  font-weight: bolder;
+}
+#close-icon{
+  cursor:pointer;
+  justify-self: flex-end;
+}
+.box-close{
+  display: flex;
+  justify-content: flex-end;
+}
+.box-yes-no{
+  display: flex;
+}
+.btn1{
+  width:50%;
+  color: #FFFFFF;
+}
+#no-button{
+  background-color: #b3b3b3;
+  border-radius:0;
+
+}
+#yes-button{
+  background-color: #f55c47;
+  border-radius:0;
+
+}
+
+.yes-no-box{
+  width: 100%;
+}
+.box{
+  width:380px;
+}
+.content-span{
+  padding:20px;
+}
+.info-modale-style{
+  padding:0;
+  padding:2px 2px 2px 3px;
+}
+.hide{
+  display: none;
+}
+.mat-dialog-container {
+  padding: 0px !important;
+}
+form{
+  margin-top: 20px;
+}
+.timepicker-overlay{
+  z-index: 100000000 !important;
+}
+

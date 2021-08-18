@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row "style="max-height: 30px; margin-bottom: 20px">
+      <div class="col-11 row">
+        <ng-multiselect-dropdown
+          [placeholder]="'choisir un employé'"
+          [settings]="dropdownSettings"
+          [data]="dropdownList"
+          [(ngModel)]="selectedItems"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelect)="onDeselect($event)"
+          class="col-4"
+          name="test"
+          style="max-height: 30px"
+        >
+        </ng-multiselect-dropdown>
+        <input type="text"
+               ngxDaterangepickerMd
+               [locale]="{applyLabel: 'ok',separator: ' To ',format: 'DD-MM-YYYY'}"
+               startKey="start"
+               endKey="end"
+               [(ngModel)]="selected"
+               class="col-6 ">
+      </div>
+      <button type="reset" class="btn btn-primary mr-2 col-1" (click)="onSubmite()">Submit</button>
+    </div>
+    <!--    <table class="table table-separate table-head-custom table-foot-custom table-checkable" id="kt_datatable">-->
+    <!--      <thead>-->
+    <!--      <tr>-->
+    <!--        <th></th>-->
+    <!--        <th>Attendance ID</th>-->
+    <!--        <th>Employe Nom</th>-->
+    <!--        <th>Group</th>-->
+    <!--        <th>Shift</th>-->
+    <!--        <th>Statut</th>-->
+    <!--      </tr>-->
+    <!--      </thead>-->
+    <!--      <tbody>-->
+    <!--      <tr *ngFor="let child of listEmployeAttendance; index as i">-->
+    <!--        <th> <a class="btn btn-primary" type="button" data-toggle="collapse" data-target="{{'#collapseExample'+i}}" aria-expanded="false" aria-controls="collapseExample">-->
+    <!--+        </a></th>-->
+    <!--        <th>{{child.employe.employe_Id}}</th>-->
+    <!--        <th>{{child.employe.fullName}}</th>-->
+    <!--        <th>{{child.employe.groupe.nom}}</th>-->
+    <!--        <th>{{child.employe.shiftDto.nom}}</th>-->
+    <!--        <th>{{child.employe.statu}}</th>-->
+
+    <!--         <th> <div class="collapse" id="{{'collapseExample'+i}}">-->
+    <!--          <div class="card card-body">-->
+    <!--            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.-->
+    <!--          </div>-->
+    <!--        </div> </th>-->
+    <!--      </tr>-->
+
+    <!--      </tbody>-->
+    <!--    </table>-->
+    <div class="box-table">
+      <mat-accordion class="card-body">
+        <mat-expansion-panel *ngFor="let value of listEmployeAttendance">
+          <mat-expansion-panel-header>
+            <div class="header-box col-12">
+              <span class="col-2">{{value.employe.nom}}</span>
+              <span class="offset-1 col-2">{{value.employe.groupe != null ? value.employe.groupe.nom : 'No group'}}</span>
+              <span class=" font-weight-bold mr-2 offset-2 col-1"
+                    [ngClass]="{'text-danger':value.employe.statu==0,'text-primary':value.employe.statu==1}"><span
+                class="label  label-dot mr-2"
+                [ngClass]="{'label-danger':value.employe.statu==0,'label-primary':value.employe.statu==1}"></span>{{value.employe.statu > 0 ? 'Present' : 'Absent'}}</span>
+              <span class="offset-2">Total:  {{value.total}}</span>
+            </div>
+          </mat-expansion-panel-header>
+          <table class="table table-separate table-head-custom table-foot-custom table-checkable" id="kt_datatable">
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>Entree</th>
+              <th>Sortie</th>
+              <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let attendance of value.attendenceList">
+              <th>{{attendance.dateOflog}}</th>
+              <th>{{attendance.timeIn}}</th>
+              <th>{{attendance.timeOut}}</th>
+              <th>{{attendance.totalheure}}</th>
+            </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+

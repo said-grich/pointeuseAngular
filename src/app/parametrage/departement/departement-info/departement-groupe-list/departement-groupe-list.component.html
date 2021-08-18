@@ -1,0 +1,24 @@
+<header class="content__title">
+  <h1>LISTE DES GROUPES DE CE DEPARTEMENT</h1>
+</header>
+
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table id="data-table" class="table table-bordered">
+        <thead class="thead-default">
+        <tr>
+          <th>N°</th>
+          <th>Groupe_Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let g of listGroupe">
+          <td>{{g.group_id}}</td>
+          <td>{{g.nom}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

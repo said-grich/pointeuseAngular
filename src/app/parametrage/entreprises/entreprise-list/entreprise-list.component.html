@@ -1,0 +1,58 @@
+<form>
+  <div class="form-group mb-2">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." (keyup)="filtring($event)"/>
+      <div class="input-group-prepend">
+        <button class="btn btn-primary" type="button" disabled><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+</form>
+<div>
+  <mat-table [dataSource]="listEntreprise" matSort (matSortChange)="sortData($event)">
+    <ng-container matColumnDef="#">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
+      <mat-cell *matCellDef="let entreprise">{{entreprise.entreprise_id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>nom</mat-header-cell>
+      <mat-cell *matCellDef="let entreprise">{{entreprise.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>address</mat-header-cell>
+      <mat-cell *matCellDef="let entreprise">{{entreprise.adress}}</mat-cell>
+    </ng-container> <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>email</mat-header-cell>
+      <mat-cell *matCellDef="let entreprise">{{entreprise.email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="telephone_number">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>No. Telephone</mat-header-cell>
+      <mat-cell *matCellDef="let entreprise">{{entreprise.telephone_number}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row ;index as i">
+        <button mat-icon-button class="btn btn-light-info font-weight-normal mr-2"  (click)="getInfo(row)" ><i class="fas fa-info"></i></button>
+        <button mat-icon-button class="btn btn-light-primary font-weight-bold mr-2"  (click)="OnEdit(row,i)" ><i class="fas fa-edit"></i></button>
+        <button mat-icon-button class="btn btn-light-danger font-weight-bold mr-2"  (click)="delete(row,i)"><i class="fa fa-trash"></i></button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:columnsToDisplay;"></mat-row>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef>
+        loading data ...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef>
+        table is empty
+      </mat-footer-cell>
+    </ng-container>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listEntreprise!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']"
+                    [ngClass]="{'hide':listEntreprise !=null && listEntreprise.data.length != 0 }"></mat-footer-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
+                 [ngClass]="{'hide' :listEntreprise==null}"></mat-paginator>
+</div>

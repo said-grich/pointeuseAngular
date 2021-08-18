@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{test()}}</h5>
+  <button type="button" class="close" (click)="onClose()">
+    <i aria-hidden="true" class="ki ki-close"></i>
+  </button>
+</div>
+<form   [formGroup]="groupeService.groupeCreateForm">
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input matInput formControlName="groupe_id" placeholder="No. Groupe">
+          <mat-error *ngIf="groupeService.groupeCreateForm.controls['groupe_id'].invalid">No. Groupe
+            invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="nom" placeholder="Nom">
+          <mat-error *ngIf="groupeService.groupeCreateForm.controls['nom'].invalid">Nom invalid</mat-error>
+        </mat-form-field>
+<!--        <mat-form-field>-->
+<!--          <input matInput formControlName="departement" placeholder="departement">-->
+<!--          <mat-error *ngIf="groupeService.groupeCreateForm.controls['departement'].invalid">departement invalid-->
+<!--          </mat-error>-->
+<!--        </mat-form-field>-->
+        <mat-form-field appearance="fill">
+          <mat-label>Departement</mat-label>
+          <mat-select formControlName="departement" (change)="isSelected($event)" >
+            <mat-option *ngFor="let c of departementList" [value]="c.nom">{{c.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Shift List</mat-label>
+          <mat-select formControlName="shift" (change)="isSelectedShift($event)" >
+            <mat-option *ngFor="let c of shiftlist" [value]="c.nom">{{c.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button color="primary" class="button" type="submit" (click)="oneSubmit()">
+            {{test2()}}
+          </button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+

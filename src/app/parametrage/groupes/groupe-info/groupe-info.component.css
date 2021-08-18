@@ -1,0 +1,25 @@
+.space-between{
+  width:100%;
+
+}
+.example-card {
+  max-width: 100%;
+}
+
+
+.close1{
+  margin-bottom:30px;
+}
+.box-nav{
+  display: flex;
+}
+.departement{
+  width: 50%;
+  color: #FFFFFF;
+  border-radius: 0;
+}
+.details{
+  width: 50%;
+  color: #FFFFFF;
+  border-radius: 0;
+}

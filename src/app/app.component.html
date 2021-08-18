@@ -1,0 +1,14 @@
+<ng-template *ngIf="tokenService.getToken()==null; then loggin ; else route">
+</ng-template>
+<ng-template #route>
+  <app-header></app-header>
+  <div class="container" style="margin-top: 20px">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+<ng-template
+#loggin class="container-fluid">
+    <app-register style="z-index: 9999" ></app-register>
+</ng-template>
+
+

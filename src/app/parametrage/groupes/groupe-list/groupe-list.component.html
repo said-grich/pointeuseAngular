@@ -1,0 +1,50 @@
+<form>
+  <div class="form-group mb-2">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." (keyup)="filtring($event)"/>
+      <div class="input-group-prepend">
+        <button class="btn btn-primary" type="button" disabled><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+</form>
+  <mat-table [dataSource]="listGroupe" matSort (matSortChange)="sortData($event)">
+    <ng-container matColumnDef="#">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
+      <mat-cell *matCellDef="let groupe">{{groupe.group_id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+      <mat-cell *matCellDef="let groupe">{{groupe.nom}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="departement">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Departemnet</mat-header-cell>
+      <mat-cell *matCellDef="let groupe">{{groupe.departement.nom}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row ;index as i">
+        <button mat-icon-button class="btn btn-light-info font-weight-normal mr-2"  (click)="getInfo(row)" ><i class="fas fa-info"></i></button>
+        <button mat-icon-button class="btn btn-light-primary font-weight-bold mr-2"  (click)="OnEdit(row,i)" ><i class="fas fa-edit"></i></button>
+        <button mat-icon-button class="btn btn-light-danger font-weight-bold mr-2"  (click)="delete(row,i)"><i class="fa fa-trash"></i></button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:columnsToDisplay;"></mat-row>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef>
+        loading data ...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef>
+        table is empty
+      </mat-footer-cell>
+    </ng-container>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listGroupe!=null}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']"
+                    [ngClass]="{'hide':listGroupe !=null && listGroupe.data.length != 0 }"></mat-footer-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons
+                 [ngClass]="{'hide' :listGroupe==null}"></mat-paginator>
+

@@ -1,0 +1,56 @@
+<form>
+  <div class="form-group mb-2">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." (keyup)="filtring($event)"/>
+      <div class="input-group-prepend">
+        <button class="btn btn-primary" type="button" disabled><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="card">
+  <div class="car-body">
+    <mat-table [dataSource]="ShiftList" matSort >
+      <ng-container matColumnDef="nom">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+        <mat-cell *matCellDef="let shift">{{shift.nom}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="entree">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Heure d'entrée</mat-header-cell>
+        <mat-cell *matCellDef="let shift">{{shift.heurDentree}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="sortie">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Heur De sortie</mat-header-cell>
+        <mat-cell *matCellDef="let shift">{{shift.heurDsortie}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Total</mat-header-cell>
+        <mat-cell *matCellDef="let shift">{{shift.totalHeur}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row ;index as i">
+          <button mat-icon-button class="btn btn-light-info font-weight-normal mr-2"  (click)="getInfo(row)" ><i class="fas fa-info"></i></button>
+          <button mat-icon-button class="btn btn-light-primary font-weight-bold mr-2"  (click)="OnEdit(row,i)" ><i class="fas fa-edit"></i></button>
+          <button mat-icon-button class="btn btn-light-danger font-weight-bold mr-2"  (click)="delete(row,i)"><i class="fa fa-trash"></i></button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let row; columns:columnsToDisplay;"></mat-row>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef>
+          loading data ...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef>
+          table is empty
+        </mat-footer-cell>
+      </ng-container>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':ShiftList!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']"
+                      [ngClass]="{'hide':ShiftList !=null && ShiftList.data.length != 0 }"></mat-footer-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons [ngClass]="{'hide' :ShiftList==null}"></mat-paginator>
+  </div>
+</div>

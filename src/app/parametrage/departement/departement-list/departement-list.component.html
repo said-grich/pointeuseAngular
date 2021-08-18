@@ -1,0 +1,55 @@
+<form>
+  <div class="form-group mb-2">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." (keyup)="filtring($event)"/>
+      <div class="input-group-prepend">
+        <button class="btn btn-primary" type="button" disabled><i class="fas fa-search"></i></button>
+      </div>
+    </div>
+  </div>
+</form>
+<div>
+  <mat-table class="table-striped" [dataSource]="listDepartement" matSort (matSortChange)="sortData($event)">
+    <ng-container matColumnDef="#">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>No.</mat-header-cell>
+      <mat-cell *matCellDef="let departement">{{departement.departement_id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>nom</mat-header-cell>
+      <mat-cell *matCellDef="let departement">{{departement.nom}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="entreprise">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Entreprise</mat-header-cell>
+      <mat-cell *matCellDef="let departement">{{departement.entreprise.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="locale">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Locale</mat-header-cell>
+      <mat-cell *matCellDef="let departement">{{departement.locale}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row ;index as i">
+        <button mat-icon-button class="btn btn-light-info font-weight-normal mr-2"  (click)="getInfo(row)" ><i class="fas fa-info"></i></button>
+        <button mat-icon-button class="btn btn-light-primary font-weight-bold mr-2"  (click)="OnEdit(row,i)" ><i class="fas fa-edit"></i></button>
+        <button mat-icon-button class="btn btn-light-danger font-weight-bold mr-2"  (click)="delete(row,i)"><i class="fa fa-trash"></i></button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let row; columns:columnsToDisplay;"></mat-row>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef>
+        loading data ...
+      </mat-footer-cell>
+    </ng-container>
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef>
+        No Data Found!
+      </mat-footer-cell>
+    </ng-container>
+<!--    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':listDepartement!=null}"></mat-footer-row>-->
+    <mat-footer-row *matFooterRowDef="['noData']"
+                    [ngClass]="{'hide':listDepartement !=null && listDepartement.data.length!=0 }"></mat-footer-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[2,3,4]" showFirstLastButtons
+                 [ngClass]="{'hide' :listDepartement==null}"></mat-paginator>
+</div>

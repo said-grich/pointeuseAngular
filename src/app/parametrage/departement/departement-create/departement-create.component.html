@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{test()}}</h5>
+  <button type="button" class="close" (click)="onClose()">
+    <i aria-hidden="true" class="ki ki-close"></i>
+  </button>
+</div>
+<form [formGroup]="departementService.departementCreateForm">
+  <input type="hidden" formControlName="$key">
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <input matInput formControlName="Departement_id" placeholder="No. Departement">
+          <mat-error *ngIf="departementService.departementCreateForm.controls['Departement_id'].invalid">No. Departement
+              invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="nom" placeholder="nom">
+          <mat-error *ngIf="departementService.departementCreateForm.controls['nom'].invalid">Nom invalid</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Entreprise</mat-label>
+          <mat-select formControlName="entreprise" (change)="isSelected($event)" >
+            <mat-option *ngFor="let c of entrepriseList" [value]="c.name">{{c.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="locale" placeholder="Locale">
+          <mat-error *ngIf="departementService.departementCreateForm.controls['locale'].invalid">Locale invalid
+          </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-raised-button color="primary" class="button" type="submit" (click)="oneSubmit()">
+            {{test2()}}
+          </button>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

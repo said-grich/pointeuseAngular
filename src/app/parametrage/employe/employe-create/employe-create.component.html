@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{test()}}</h5>
+  <button type="button" class="close" (click)="onClose()">
+    <i aria-hidden="true" class="ki ki-close"></i>
+  </button>
+</div>
+<mat-card>
+  <form [formGroup]="employeService.employeCreateForm">
+    <mat-grid-list cols="2" rowHeight="70px">
+      <mat-grid-tile>
+        <mat-form-field class="from-row">
+          <mat-label>Utilisateur_Id</mat-label>
+          <input matInput autocomplete="off" formControlName="employe_Id" placeholder="No.Employe">
+          <mat-error *ngIf="employeService.employeCreateForm.controls['employe_Id'].invalid">No.Employe invalid
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="from-row">
+          <mat-label>Full Name</mat-label>
+          <input matInput autocomplete="off" formControlName="fullName" placeholder="Full Name">
+          <mat-error *ngIf="employeService.employeCreateForm.controls['fullName'].invalid">Full Name invalid
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="fill" class="from-row">
+          <mat-label>Groupe</mat-label>
+          <mat-select formControlName="groupe" (change)="isSelected($event)">
+            <mat-option *ngFor="let g of groupeList" [value]="g.nom">{{g.nom}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="from-row">
+          <mat-label>Email</mat-label>
+          <input matInput autocomplete="off" formControlName="email" placeholder="Email">
+          <mat-error *ngIf="employeService.employeCreateForm.controls['email'].invalid">Email invalid</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="from-row">
+          <mat-label>Adresse</mat-label>
+          <input matInput formControlName="adresse" placeholder="Adresse">
+          <mat-error *ngIf="employeService.employeCreateForm.controls['adresse'].invalid">Adresse invalid</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field class="from-row">
+          <input matInput formControlName="telephone" placeholder="Telephone Number">
+          <mat-error *ngIf="employeService.employeCreateForm.controls['telephone'].errors?.minlength">
+            numero de telephone invalid
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+  <div class="button-row">
+    <button type="reset" mat-raised-button style="margin-right: 20px">Annuler</button>
+    <button mat-raised-button color="primary" class="button" type="submit" (click)="oneSubmit()">
+      {{test2()}}
+    </button>
+  </div>
+</mat-card>
+
+
+
+

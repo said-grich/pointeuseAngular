@@ -1,0 +1,21 @@
+<div class="box-close">
+  <mat-icon id="close-icon" class="close1"  (click)="onClose()">close</mat-icon>
+</div>
+<div class="box-nav">
+  <button mat-flat-button class="details" color="accent" (click)="getStatu(false)">
+    show Details
+  </button>
+  <button mat-flat-button class="departement"  color="primary" (click)="getStatu(true)">
+    show Departements
+  </button>
+</div>
+<mat-card>
+  <mat-card-content>
+    <div *ngIf="!statu">
+      <app-groupe-details></app-groupe-details>
+    </div>
+    <div *ngIf="statu">
+      <app-entreprise-departement-list></app-entreprise-departement-list>
+    </div>
+  </mat-card-content>
+</mat-card>

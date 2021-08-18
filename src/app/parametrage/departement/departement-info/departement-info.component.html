@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{departement.nom}}</h5>
+  <button type="button" class="close" (click)="onClose()">
+    <i aria-hidden="true" class="ki ki-close"></i>
+  </button>
+</div>
+<div class="box-nav">
+  <button mat-flat-button class="details" color="accent" (click)="getStatu(false)">
+    show Details
+  </button>
+  <button mat-flat-button class="departement"  color="primary" (click)="getStatu(true)">
+    show Groupes
+  </button>
+</div>
+<mat-card>
+  <mat-card-content>
+    <div *ngIf="!statu">
+      <app-departement-details></app-departement-details>
+    </div>
+    <div *ngIf="statu">
+      <app-departement-groupe-list></app-departement-groupe-list>
+    </div>
+  </mat-card-content>
+</mat-card>
+

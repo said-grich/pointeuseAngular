@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{test()}}</h5>
+  <button type="button" class="close" (click)="onClose()">
+    <i aria-hidden="true" class="ki ki-close"></i>
+  </button>
+</div>
+<form [formGroup]="entrepriseService.entrepriseCreateForm">
+  <mat-grid-list cols="1" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input matInput formControlName="entreprise_id" placeholder="No. Entreprise">
+          <mat-error *ngIf="entrepriseService.entrepriseCreateForm.controls['entreprise_id'].invalid">No. Entreprise
+            invalid
+          </mat-error>
+        </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="name" placeholder="Nom">
+            <mat-error *ngIf="entrepriseService.entrepriseCreateForm.controls['name'].invalid">Nom invalid</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="email" placeholder="Email">
+            <mat-error *ngIf="entrepriseService.entrepriseCreateForm.controls['email'].invalid">Email invalid
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="adress" placeholder="Adress">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="telephone_number" placeholder="Telephone Number">
+            <mat-error *ngIf="entrepriseService.entrepriseCreateForm.controls['telephone_number'].errors?.minlength">
+              numero de telephonr invalid
+            </mat-error>
+          </mat-form-field>
+          <div class="button-row">
+            <button mat-raised-button color="primary" class="button" type="submit" (click)="oneSubmit()">
+              {{test2()}}
+            </button>
+          </div>
+          </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

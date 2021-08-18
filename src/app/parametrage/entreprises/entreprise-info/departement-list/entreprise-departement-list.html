@@ -1,0 +1,23 @@
+<section>
+  <div class="card">
+    <div class="card-header">Liste des depatement</div>
+    <div class="card-body">
+      <table class="table table-hover table-sm">
+        <thead>
+        <th>Nom</th>
+        <th>Departement_id</th>
+        <th>locale</th>
+
+        </thead>
+        <tbody>
+        <tr *ngFor="let d of listDepartement">
+          <td>{{d.nom}}</td>
+          <td>{{d.departement_id}}</td>
+          <td>{{d.locale}}</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
